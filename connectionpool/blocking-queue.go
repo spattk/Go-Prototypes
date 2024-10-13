@@ -63,9 +63,13 @@ func TestConnectionPooling(bq *BlockingQueue) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
+			
+			//Grab an available connection to execute the request
 			item := bq.Take()
 			fmt.Printf("Executing %v DB request using : %v\n", i, item)
 			time.Sleep(2000 * time.Millisecond)
+			
+			//Release the connection after the work is done
 			bq.Put(item)
 		}()
 	}
