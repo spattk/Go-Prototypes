@@ -59,7 +59,7 @@ func (q *BlockingQueue) Take() interface{} {
 	return result
 }
 
-func TestConnectionPooling(bq *BlockingQueue) {
+func TestConnectionPoolingBlockingQueue(bq *BlockingQueue) {
 	var wg sync.WaitGroup
 	fmt.Println("Executing DB requests by acquiring DB Connection")
 	for i :=1; i <= 100; i++ {
@@ -84,13 +84,4 @@ func getDBConnection() string {
 	return "db-conn-"+strconv.Itoa(dbConnCount);
 }
 
-func main() {
-	poolSize := 10
-	bq := NewBlockingQueue(poolSize)
-	fmt.Println("Initiating Connection pooling...")
-	for i := 1; i <= poolSize; i++ {
-        bq.Put(getDBConnection())
-    }
-	fmt.Println("10 initial connections established.")
-	TestConnectionPooling(bq)
-}
+
