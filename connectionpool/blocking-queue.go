@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"sync"
 	"time"
+	"strconv"
 )
+
+var dbConnCount = 0
 
 type BlockingQueue struct {
 	m        sync.Mutex
@@ -76,11 +79,17 @@ func TestConnectionPooling(bq *BlockingQueue) {
 	wg.Wait()
 }
 
+func getDBConnection() string {
+	dbConnCount++;
+	return "db-conn-"+strconv.Itoa(dbConnCount);
+}
+
 func main() {
-	bq := NewBlockingQueue(10)
+	poolSize := 10
+	bq := NewBlockingQueue(poolSize)
 	fmt.Println("Initiating Connection pooling...")
-	for i := 1; i <= 10; i++ {
-        bq.Put(fmt.Sprintf("db-conn-%d", i))
+	for i := 1; i <= poolSize; i++ {
+        bq.Put(getDBConnection())
     }
 	fmt.Println("10 initial connections established.")
 	TestConnectionPooling(bq)
