@@ -35,5 +35,5 @@ func handleConnection(conn net.Conn) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Printf("Read %d bytes with text %s", nb, buf)
+	fmt.Printf("\nRead %d bytes with text %s", nb, buf)
 }

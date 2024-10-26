@@ -7,14 +7,14 @@ import (
 	"os"
 )
 
-func main() {
+func createTcpConnCustomMsg() {
 	conn, err := net.Dial("tcp", "localhost:8080")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println("Connected to server")
+	fmt.Printf("Connected to server")
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Enter a message to send to server")
 	str, err := reader.ReadString('\n')
@@ -25,5 +25,4 @@ func main() {
 	}
 
 	conn.Close()
-
 }
