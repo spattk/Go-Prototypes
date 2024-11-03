@@ -5,3 +5,4 @@ Inserted 100000 records in 17.004243s
 Successfully connected to MySQL!
 Inserted 1000000 records in 2m46.96834575s
 Inserted 1000000 records in 2m48.221351166s
+
