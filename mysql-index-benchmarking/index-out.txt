@@ -1,0 +1,4 @@
+test	test_table2	PRIMARY	64.59
+test	test_table1	PRIMARY	28.56
+test	test_table2	idx_age	19.55
+test	test_table1	idx_age	16.55
