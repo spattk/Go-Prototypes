@@ -1,5 +1,11 @@
 The idea is inspired from the GFS paper which implements atomic record append. I have tried to implement a similar structure using Unix's `O_APPEND` mode.
 
+#### How to run
+```
+cd o_append
+go run o_append.go
+```
+
 #### Code Explanation
 `o_append.go` -> driver code / main function
 
